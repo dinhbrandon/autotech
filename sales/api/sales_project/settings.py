@@ -1,3 +1,4 @@
+import dj_database_url
 """
 Django settings for sales_project project.
 
