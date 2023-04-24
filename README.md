@@ -2,7 +2,7 @@
 
 Team:
 
-- Person 1 - Which microservice?
+- Person 1 - Brandon Dinh (Service microservice)
 - Person 2 - Adrianna (Sales)
 
 ## Design
