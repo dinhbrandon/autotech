@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
-import ListAutomobiles from "./ListAutomobilesAH";
-import NewAutomobileForm from "./AutomobileFormAH";
-import ListVehicleModels from './ListVehicleModelsBD';
-import VehicleModelForm from './VehicleModelFormBD';
-import ListTechnicians from './servicesBD/ListTechniciansBD';
-import TechnicianForm from './servicesBD/TechnicianFormBD';
-import AppointmentForm from './servicesBD/AppointmentFormBD';
-import ListAppointments from './servicesBD/ListAppointmentsBD';
-import AppointmentHistory from './servicesBD/AppointmentHistoryBD';
-import ManufacturersList from './Inventory/ManufacturersListAT';
-import ManufacturersForm from './Inventory/ManufacturersFormAT';
+import ListAutomobiles from "./Inventory/ListAutomobilesAH";
+import NewAutomobileForm from "./Inventory/AutomobileFormAH";
+import ListVehicleModels from "./Inventory/ListVehicleModelsBD";
+import VehicleModelForm from "./Inventory/VehicleModelFormBD";
+import ListTechnicians from "./servicesBD/ListTechniciansBD";
+import TechnicianForm from "./servicesBD/TechnicianFormBD";
+import AppointmentForm from "./servicesBD/AppointmentFormBD";
+import ListAppointments from "./servicesBD/ListAppointmentsBD";
+import AppointmentHistory from "./servicesBD/AppointmentHistoryBD";
+import ManufacturersList from "./Inventory/ManufacturersListAT";
+import ManufacturersForm from "./Inventory/ManufacturersFormAT";
 
 function App() {
   return (
