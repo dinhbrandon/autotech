@@ -3,7 +3,7 @@
 Team:
 
 * Person 1 - Brandon Dinh (Service microservice)
-* Person 2 - Which microservice?
+* Person 2 - Aaron Tran (Sales microservice)
 
 ## Design
 

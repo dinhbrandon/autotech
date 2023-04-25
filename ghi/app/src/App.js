@@ -8,6 +8,8 @@ import TechnicianForm from './servicesBD/TechnicianFormBD';
 import AppointmentForm from './servicesBD/AppointmentFormBD';
 import ListAppointments from './servicesBD/ListAppointmentsBD';
 import AppointmentHistory from './servicesBD/AppointmentHistoryBD';
+import ManufacturersList from './Inventory/ManufacturersListAT';
+import ManufacturersForm from './Inventory/ManufacturersFormAT';
 
 function App() {
   return (
@@ -28,6 +30,10 @@ function App() {
             <Route path="" element={<ListAppointments />} />
             <Route path="create" element={<AppointmentForm />} />
             <Route path="history" element={<AppointmentHistory />} />
+          </Route>
+          <Route path="manufacturers">
+            <Route path="" element={<ManufacturersList />} />
+            <Route path="create" element={<ManufacturersForm />} />
           </Route>
         </Routes>
       </div>
