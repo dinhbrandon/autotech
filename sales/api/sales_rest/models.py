@@ -1,3 +1,39 @@
 from django.db import models
+from django.urls import reverse
 
-# Create your models here.
+class AutomobileVO(models.Model):
+    vin = models.CharField(max_length=17, unique=True)
+
+class Salesperson(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    employee_id = models.PositiveIntegerField()
+
+    def get_api_url(self):
+        return reverse("api_salespeople", kwargs={"pk": self.pk})
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    phone_number = models.PositiveIntegerField()
+
+    def get_api_url(self):
+        return reverse("api_customers", kwargs={"pk": self.pk})
+
+class Sale(models.Model):
+    automobile = models.ForeignKey(
+        AutomobileVO,
+        on_delete=models.PROTECT,
+        related_name="sale",
+    )
+    salesperson = models.ForeignKey(
+        Salesperson,
+        on_delete=models.PROTECT,
+        related_name="sale",
+    )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.PROTECT,
+        related_name="sale",
+    )
