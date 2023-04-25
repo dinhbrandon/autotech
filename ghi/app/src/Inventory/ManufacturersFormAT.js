@@ -39,8 +39,8 @@ export default function ManufacturersForm() {
                     <h1>Create a Manufacturer</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
-                            <input onChange={(e) => handleUpdate(e, setManufacturer)} value={manufacturer} required type="text" name="manufacturer" id="manufacturer" className="form-control" />
-                            <label htmlFor="manufacturer">Manufacturer</label>
+                            <input onChange={(e) => handleUpdate(e, setManufacturer)} value={manufacturer} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />
+                            <label htmlFor="manufacturer">Manufacturer...</label>
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
