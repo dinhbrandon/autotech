@@ -29,7 +29,7 @@ function ListVehicleModels(){
             <div className='table-responsive'>
                 
             </div>
-            <table className='table table-striped w-100' >
+            <table className='table table-striped' >
                 <thead>
                     <tr>
                         <th>Name</th>
