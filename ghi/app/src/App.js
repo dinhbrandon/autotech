@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import ListVehicleModels from './ListVehicleModelsBD';
-import VehicleModelForm from './VehicleModelFormBD';
+import ListVehicleModels from './Inventory/ListVehicleModelsBD';
+import VehicleModelForm from './Inventory/VehicleModelFormBD';
 import ListTechnicians from './servicesBD/ListTechniciansBD';
 import TechnicianForm from './servicesBD/TechnicianFormBD';
 import AppointmentForm from './servicesBD/AppointmentFormBD';
