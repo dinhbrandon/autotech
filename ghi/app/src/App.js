@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './MainPage';
-import Nav from './Nav';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./MainPage";
+import Nav from "./Nav";
+import ListAutomobiles from "./ListAutomobilesAH";
+import NewAutomobileForm from "./AutomobileFormAH";
 import ListVehicleModels from './ListVehicleModelsBD';
 import VehicleModelForm from './VehicleModelFormBD';
 import ListTechnicians from './servicesBD/ListTechniciansBD';
@@ -18,6 +20,8 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="automobiles/" element={<ListAutomobiles />} />
+          <Route path="automobiles/create/" element={<NewAutomobileForm />} />
           <Route path="models">
             <Route path="" element={<ListVehicleModels />} />
             <Route path="create" element={<VehicleModelForm />} />
