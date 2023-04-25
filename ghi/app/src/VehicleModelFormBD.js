@@ -52,7 +52,6 @@ function VehicleModelForm(){
                 'Content-Type': 'application/json',
             },
         };
-        console.log(formData)
         const response = await fetch(submitUrl, fetchConfig);
 
         if (response.ok){
