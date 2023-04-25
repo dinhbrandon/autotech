@@ -11,7 +11,7 @@ class Manufacturer(models.Model):
 
 class VehicleModel(models.Model):
     name = models.CharField(max_length=100)
-    picture_url = models.URLField()
+    picture_url = models.URLField(max_length=2000)
 
     manufacturer = models.ForeignKey(
         Manufacturer,
