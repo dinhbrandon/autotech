@@ -11,7 +11,8 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "import_href",
-        "vin"
+        "vin",
+        "sold",
     ]
 
 class SalespersonEncoder(ModelEncoder):
@@ -163,6 +164,8 @@ def api_sales(request):
 
             automobile_href = content["automobile"]
             automobile = AutomobileVO.objects.get(import_href=automobile_href)
+            automobile.sold = True
+            automobile.save()
             content["automobile"] = automobile
 
             salesperson_id = content["salesperson_id"]
@@ -191,6 +194,12 @@ def api_sale(request, pk):
         try:
             sale = Sale.objects.get(id=pk)
             sale.delete()
+
+            automobile_href = sale.automobile.import_href
+            automobile = AutomobileVO.objects.get(import_href=automobile_href)
+            automobile.sold = False
+            automobile.save()
+
             return JsonResponse(
                 sale,
                 encoder=SaleEncoder,
@@ -199,5 +208,21 @@ def api_sale(request, pk):
         except Sale.DoesNotExist:
             return JsonResponse(
                 {"message": "Sale object does not exist"},
+                status=404
+            )
+
+@require_http_methods(["GET"])
+def api_autoVO(request):
+    if request.method == "GET":
+        try:
+            autoVO = AutomobileVO.objects.all()
+            return JsonResponse(
+                {"autos": autoVO},
+                encoder=AutomobileVOEncoder,
+                safe=False,
+            )
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Automobile model does not exist"},
                 status=404
             )

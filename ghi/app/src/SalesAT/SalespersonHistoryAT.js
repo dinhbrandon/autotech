@@ -8,7 +8,6 @@ export default function SalespersonHistory() {
     const handleUpdate = (e, stateFunction) => {
         const value = e.target.value;
         stateFunction(value);
-        console.log("value", value)
     }
 
     const fetchSalesData = async () => {
@@ -19,7 +18,7 @@ export default function SalespersonHistory() {
         if (response.ok) {
             const data = await response.json();
             setSales(data.sales);
-            console.log("sales", data.sales)
+
         }
     }
 
@@ -31,9 +30,6 @@ export default function SalespersonHistory() {
         if (response.ok) {
             const data = await response.json();
             setSalespeople(data.salespeople)
-            console.log("salespeople", data.salespeople)
-            console.log("salesperson", data.salespeople[0].id)
-            console.log(data.salespeople[0].id === (salesperson))
         }
     }
 

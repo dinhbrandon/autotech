@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 
 export default function SalespeopleForm() {
     const [firstName, setFirstName] = useState("");

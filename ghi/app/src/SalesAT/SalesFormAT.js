@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SalesForm() {
     const [autos, setAutos] = useState([]);
@@ -35,18 +35,16 @@ export default function SalesForm() {
         const response = await fetch(url, fetchConfig)
 
         if (response.ok) {
-            const newSales = await response.json();
-            console.log(newSales);
-
             setHref("");
             setSalesperson("");
             setCustomer("");
             setPrice("");
+            fetchAutoData();
         }
     }
 
     const fetchAutoData = async () => {
-        const url = "http://localhost:8100/api/automobiles/";
+        const url = "http://localhost:8090/api/autoVO/";
 
         const response = await fetch(url);
 
@@ -93,9 +91,9 @@ export default function SalesForm() {
                         <div className="form-floating mb-3">
                             <select onChange={(e) => handleUpdate(e, setHref)} value={href} placeholder="Choose a VIN" required name="href" id="href" className="form-select">
                                 <option value="">--</option>
-                                {autos.map(auto => {
+                                {autos.filter(auto => auto.sold === false).map(auto => {
                                     return(
-                                        <option value={auto.href} key={auto.href}>
+                                        <option value={auto.import_href} key={auto.import_href}>
                                             {auto.vin}
                                         </option>
                                     )
