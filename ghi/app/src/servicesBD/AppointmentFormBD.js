@@ -70,6 +70,8 @@ function AppointmentForm(){
                 technician: '',
                 reason: '',
             });
+            setDate('');
+            setTime('');
         }
     };
 
@@ -110,7 +112,10 @@ function AppointmentForm(){
                             <label htmlFor='reason'>Reason</label>
                             <input value={formData.reason} onChange={handleFormChange} required type='text' name='reason' id='reason' className='form-control' />
                         </div>
-                        <button className="btn btn-primary">Create</button>
+                        <div className='mb-3' style={{ marginTop: '10px' }}>
+                            <button className="btn btn-primary">Create</button>
+                        </div>
+
                     </form>
                 </div>
             </div>
