@@ -8,20 +8,20 @@ import requests
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
 django.setup()
-from service_rest.models import AutomobileVO
-
 # Import models from service_rest, here.
 # from service_rest.models import Something
+from service_rest.models import AutomobileVO
 
 
 def get_automobile():
     response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles/")
     content = json.loads(response.content)
     autos = content["autos"]
-
     for auto in autos:
         AutomobileVO.objects.update_or_create(
-            vin=auto["vin"],
+            defaults={
+                "vin": auto["vin"]
+            }
         )
 
 

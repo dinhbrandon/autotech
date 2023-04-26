@@ -26,9 +26,6 @@ function ListVehicleModels(){
     return(
         <div>
             <h1>Models</h1>
-            <div className='table-responsive'>
-                
-            </div>
             <table className='table table-striped' >
                 <thead>
                     <tr>
