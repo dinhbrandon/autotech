@@ -12,6 +12,8 @@ import ListAppointments from "./servicesBD/ListAppointmentsBD";
 import AppointmentHistory from "./servicesBD/AppointmentHistoryBD";
 import ManufacturersList from "./Inventory/ManufacturersListAT";
 import ManufacturersForm from "./Inventory/ManufacturersFormAT";
+import SalespersonForm from "./salesAH/SalespersonForm";
+import SalespersonList from "./salesAH/SalespersonList";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
             <Route path="" element={<ManufacturersList />} />
             <Route path="create" element={<ManufacturersForm />} />
           </Route>
+          <Route path="salespeople/create/" element={<SalespersonForm />} />
+          <Route path="salespeople/" element={<SalespersonList />} />
         </Routes>
       </div>
     </BrowserRouter>

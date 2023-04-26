@@ -38,7 +38,6 @@ export default function NewAutomobileForm() {
       setYear("");
       setVin("");
       setModel("");
-      // window.location.replace("/automobiles");
     }
   };
 
