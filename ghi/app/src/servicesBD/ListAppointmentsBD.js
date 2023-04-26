@@ -12,7 +12,6 @@ function ListAppointments(){
             if(response.ok){
                 const data = await response.json();
                 setAppointments(data.appointments);
-                console.log(data.appointments)
             }
         } catch (e) {
             console.error(e)
@@ -60,7 +59,7 @@ function ListAppointments(){
     return(
         <div>
             <h1>Service Appointments</h1>
-            <table className='table table-striped' >
+            <table className='table table-striped'>
                 <thead>
                     <tr>
                         <th>VIN</th>
