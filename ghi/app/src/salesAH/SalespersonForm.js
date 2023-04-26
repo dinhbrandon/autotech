@@ -55,7 +55,7 @@ export default function SalespersonForm() {
                   id="first name"
                   className="form-control"
                 />
-                <label htmlFor="color">First Name</label>
+                <label htmlFor="first name">First Name</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -68,7 +68,7 @@ export default function SalespersonForm() {
                   id="last name"
                   className="form-control"
                 />
-                <label htmlFor="year">Last Name</label>
+                <label htmlFor="last name">Last Name</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -81,7 +81,7 @@ export default function SalespersonForm() {
                   id="employee id"
                   className="form-control"
                 />
-                <label htmlFor="vin">Employee ID</label>
+                <label htmlFor="employee id">Employee ID</label>
               </div>
               <button className="btn btn-success">Create</button>
             </form>

@@ -113,7 +113,7 @@ export default function NewAutomobileForm() {
                   {models?.map((model) => {
                     return (
                       <option key={model.id} value={model.id}>
-                        {model.manufacturer.name}
+                        {model.name}
                       </option>
                     );
                   })}

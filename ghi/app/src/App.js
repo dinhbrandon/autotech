@@ -14,6 +14,10 @@ import ManufacturersList from "./Inventory/ManufacturersListAT";
 import ManufacturersForm from "./Inventory/ManufacturersFormAT";
 import SalespersonForm from "./salesAH/SalespersonForm";
 import SalespersonList from "./salesAH/SalespersonList";
+import CustomerForm from "./salesAH/CustomerForm";
+import CustomerList from "./salesAH/CustomerList";
+import SaleForm from "./salesAH/SaleForm";
+import SaleList from "./salesAH/SaleList";
 
 function App() {
   return (
@@ -43,6 +47,10 @@ function App() {
           </Route>
           <Route path="salespeople/create/" element={<SalespersonForm />} />
           <Route path="salespeople/" element={<SalespersonList />} />
+          <Route path="customers/create" element={<CustomerForm />} />
+          <Route path="customers" element={<CustomerList />} />
+          <Route path="sales/create" element={<SaleForm />} />
+          <Route path="sales" element={<SaleList />} />
         </Routes>
       </div>
     </BrowserRouter>
