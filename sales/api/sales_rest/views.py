@@ -51,128 +51,153 @@ class SaleEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_salespeople(request):
     if request.method == "GET":
-        salespeople = Salesperson.objects.all()
-        return JsonResponse(
-            {"salespeople": salespeople},
-            encoder=SalespersonEncoder,
-            safe=False,
-        )
+        try:
+            salespeople = Salesperson.objects.all()
+            return JsonResponse(
+                {"salespeople": salespeople},
+                encoder=SalespersonEncoder,
+                safe=False,
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Salesperson model does not exist"},
+                status=404
+            )
     else:
-        content = json.loads(request.body)
-        salesperson = Salesperson.objects.create(**content)
-        return JsonResponse(
-            salesperson,
-            encoder=SalespersonEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            salesperson = Salesperson.objects.create(**content)
+            return JsonResponse(
+                salesperson,
+                encoder=SalespersonEncoder,
+                safe=False,
+            )
+        except:
+            return JsonResponse(
+                {"message": "Could not create Salesperson instance"},
+                status=400
+            )
 
 @require_http_methods(["DELETE"])
 def api_salesperson(request, pk):
     if request.method == "DELETE":
         try:
-            count, _ = Salesperson.objects.filter(id=pk).delete()
+            salesperson = Salesperson.objects.get(id=pk)
+            salesperson.delete()
             return JsonResponse(
-                {"deleted": count > 0}
+                salesperson,
+                encoder=SalespersonEncoder,
+                safe=False,
             )
         except Salesperson.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": "Salesperson object does not exist"},
                 status=404
             )
 
 @require_http_methods(["GET", "POST"])
 def api_customers(request):
     if request.method == "GET":
-        customers = Customer.objects.all()
-        return JsonResponse(
-            {"customers": customers},
-            encoder=CustomerEncoder,
-            safe=False,
-        )
+        try:
+            customers = Customer.objects.all()
+            return JsonResponse(
+                {"customers": customers},
+                encoder=CustomerEncoder,
+                safe=False,
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Customer model does not exist"},
+                status=404
+            )
     else:
-        content = json.loads(request.body)
-        customer = Customer.objects.create(**content)
-        return JsonResponse(
-            customer,
-            encoder=CustomerEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            customer = Customer.objects.create(**content)
+            return JsonResponse(
+                customer,
+                encoder=CustomerEncoder,
+                safe=False,
+            )
+        except:
+            return JsonResponse(
+                {"message": "Could not create Customer instance"},
+                status=400
+            )
 
 @require_http_methods(["DELETE"])
 def api_customer(request, pk):
     if request.method == "DELETE":
         try:
-            count, _ = Customer.objects.filter(id=pk).delete()
+            customer = Customer.objects.get(id=pk)
+            customer.delete()
             return JsonResponse(
-                {"deleted": count > 0}
+                customer,
+                encoder=CustomerEncoder,
+                safe=False,
             )
         except Customer.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": "Customer object does not exist"},
                 status=404
             )
 
 @require_http_methods(["GET", "POST"])
 def api_sales(request):
     if request.method == "GET":
-        sales = Sale.objects.all()
-        return JsonResponse(
-            {"sales": sales},
-            encoder=SaleEncoder,
-            safe=False,
-        )
-    else:
-        content = json.loads(request.body)
         try:
+            sales = Sale.objects.all()
+            return JsonResponse(
+                {"sales": sales},
+                encoder=SaleEncoder,
+                safe=False,
+            )
+        except Sale.DoesNotExist:
+            return JsonResponse(
+                {"message": "Sale model does not exist"},
+                status=404
+            )
+    else:
+        try:
+            content = json.loads(request.body)
+
             automobile_href = content["automobile"]
             automobile = AutomobileVO.objects.get(import_href=automobile_href)
             content["automobile"] = automobile
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "AutomobileVO object does not exist"},
-                status=404
-            )
-        try:
+
             salesperson_id = content["salesperson_id"]
             salesperson = Salesperson.objects.get(id=salesperson_id)
             content["salesperson"] = salesperson
-        except Salesperson.DoesNotExist:
-            return JsonResponse(
-                {"message": "Salesperson object does not exist"},
-                status=404
-            )
-        try:
+
             customer_id = content["customer_id"]
             customer = Customer.objects.get(id=customer_id)
             content["customer"] = customer
-        except Customer.DoesNotExist:
-            return JsonResponse(
-                {"message": "Customer object does not exist"},
-                status=404
-            )
-        try:
+
             sale = Sale.objects.create(**content)
-        except Sale.DoesNotExist:
             return JsonResponse(
-                {"message": "Sales object does not exist"},
-                status=404
+                sale,
+                encoder=SaleEncoder,
+                safe=False,
             )
-        return JsonResponse(
-            sale,
-            encoder=SaleEncoder,
-            safe=False,
-        )
+        except:
+            return JsonResponse(
+                {"message": "Could not create Sale instance"},
+                status=400
+            )
 
 @require_http_methods(["DELETE"])
 def api_sale(request, pk):
     if request.method == "DELETE":
         try:
-            count, _ = Sale.objects.filter(id=pk).delete()
+            sale = Sale.objects.get(id=pk)
+            sale.delete()
             return JsonResponse(
-                {"deleted": count > 0}
+                sale,
+                encoder=SaleEncoder,
+                safe=False,
             )
         except Sale.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": "Sale object does not exist"},
                 status=404
             )

@@ -44,3 +44,6 @@ class Sale(models.Model):
     )
 
     price = models.IntegerField()
+
+    def get_api_url(self):
+        return reverse("api_sale", kwargs={"pk": self.pk})
