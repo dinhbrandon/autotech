@@ -1,8 +1,10 @@
 import React, {useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function AppointmentHistory(){
     const [appointments, setAppointments] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
+    //we would use the below for filtering onChange; would require useState
+    // const [filteredAppointments, setFilteredAppointments] = useState([]);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/appointments/"
@@ -12,54 +14,54 @@ function AppointmentHistory(){
             if(response.ok){
                 const data = await response.json();
                 setAppointments(data.appointments);
-                console.log(data.appointments)
+
             }
         } catch (e) {
             console.error(e)
         }
-    }
+    };
 
+    
     useEffect(() => {
         fetchData();
       }, []);
-    
-    const finishAppointment = async (appointmentId) => {
-        const url = `http://localhost:8080/api/appointments/${appointmentId}/finish`
-        const fetchConfig = {
-            method: "put",
-            body: JSON.stringify(appointments),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
 
-        const response = await fetch(url, fetchConfig);
-
-        if (response.ok){
-            fetchData()
+    // filter appointments upon pressing submit
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        //empty search returns full appointment list, in case user looks up wrong VIN
+        if (searchInput === ''){
+            await fetchData();
+        } else {
+            const results = appointments.filter((appointment) => {
+                return appointment.vin.includes(searchInput);
+            });
+            //calls the function setAppointments which populates the page, only with filtered result
+            setAppointments(results)
         }
-    }
+    };
+    // this would allow us to filter in real time regardless of pressing submit - must be onChange=
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        setSearchInput(value);
+    };
+    //filter appointments will still be appointments until entered into search
+    // const filteredAppointments = appointments.filter(appointment => {
+    //     return appointment.vin.includes(searchInput);
+    // });
 
-    const cancelAppointment = async (appointmentId) => {
-        const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel`
-        const fetchConfig = {
-            method: "put",
-            body: JSON.stringify(appointments),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const response = await fetch(url, fetchConfig);
-
-        if (response.ok){
-            fetchData()
-        }
-    }
-
-    return(
+    return (
         <div>
-            <h1>Service Appointments</h1>
+            <h1>Service History</h1>
+            
+            <form onSubmit={handleSubmit}>
+                <div className='input-group mb-3 w-100'>
+                    <input className='form-control' type='search' name='searchInput' aria-describedby='submit-button' placeholder='Search by VIN...' value={searchInput} onChange={handleSearch}/>
+                    <button className='btn btn-outline-secondary' type='submit' id='submit-button'>Search</button>
+                </div>
+            </form>
+            
+
             <table className='table table-striped' >
                 <thead>
                     <tr>

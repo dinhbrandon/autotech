@@ -70,14 +70,14 @@ function VehicleModelForm(){
             <h1>Create a vehicle model</h1>
             <form onSubmit={handleSubmit} id="create-vehicle-form">
   
-              <div className="form-floating mb-3">
-                <input value={formData.name} onChange={handleFormChange} placeholder="Model name" required type="text" name="name" id="name" className="form-control" />
-                <label htmlFor="name">Model name...</label>
+              <div>
+                <input value={formData.name} onChange={handleFormChange} placeholder="Model name..." required type="text" name="name" id="name" className="form-control" />
+                <label htmlFor="name"></label>
               </div>
 
-              <div className="form-floating mb-3">
-                <input value={formData.picture_url} onChange={handleFormChange} placeholder="Picture URL" required type="text" name="picture_url" id="picture_url" className="form-control" />
-                <label htmlFor="picture_url">Picture Url</label>
+              <div>
+                <input value={formData.picture_url} onChange={handleFormChange} placeholder="Picture URL..." required type="text" name="picture_url" id="picture_url" className="form-control" />
+                <label htmlFor="picture_url"></label>
               </div>
 
               <div className="mb-3">
