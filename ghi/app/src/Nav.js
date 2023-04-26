@@ -61,6 +61,9 @@ function Nav() {
               <NavLink className="nav-link active" to="/sales/create">Add a Sale</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link active" to="/sales/history">Salesperson History</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/technicians">Technicians</NavLink>
             </li>
             <li className="nav-item">
