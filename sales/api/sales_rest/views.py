@@ -10,7 +10,8 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin",
-        "import_href"
+        "import_href",
+        "sold",
     ]
 
 class SalespersonEncoder(ModelEncoder):
@@ -132,6 +133,8 @@ def api_list_sales(request):
         try:
             auto_vin = content["automobile"]
             automobile = AutomobileVO.objects.get(vin=auto_vin)
+            automobile.sold = True
+            automobile.save()
             content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
@@ -181,3 +184,13 @@ def api_show_sale(request, id):
     else:
         count, _ = Sale.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
+
+@require_http_methods(["GET"])
+def api_show_automobile_vo(request):
+    if request.method == "GET":
+        auto_vo = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"autos": auto_vo},
+            encoder=AutomobileVOEncoder,
+            safe=False,
+        )

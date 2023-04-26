@@ -12,8 +12,8 @@ export default function NewAutomobileForm() {
     stateFunction(value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const data = {
       color: color,
       year: year,
@@ -63,7 +63,7 @@ export default function NewAutomobileForm() {
             <form onSubmit={handleSubmit}>
               <div className="form-floating mb-3">
                 <input
-                  onChange={(e) => handleUpdate(e, setColor)}
+                  onChange={(event) => handleUpdate(event, setColor)}
                   value={color}
                   placeholder="Color"
                   required
@@ -76,7 +76,7 @@ export default function NewAutomobileForm() {
               </div>
               <div className="form-floating mb-3">
                 <input
-                  onChange={(e) => handleUpdate(e, setYear)}
+                  onChange={(event) => handleUpdate(event, setYear)}
                   value={year}
                   placeholder="Year"
                   required
@@ -89,7 +89,7 @@ export default function NewAutomobileForm() {
               </div>
               <div className="form-floating mb-3">
                 <input
-                  onChange={(e) => handleUpdate(e, setVin)}
+                  onChange={(event) => handleUpdate(event, setVin)}
                   value={vin}
                   placeholder="VIN"
                   required
@@ -102,7 +102,7 @@ export default function NewAutomobileForm() {
               </div>
               <div className="mb-3">
                 <select
-                  onChange={(e) => handleUpdate(e, setModel)}
+                  onChange={(event) => handleUpdate(event, setModel)}
                   required
                   value={model}
                   name="model"
