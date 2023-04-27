@@ -17,6 +17,7 @@ class AutomobileVOEncoder(ModelEncoder):
 class SalespersonEncoder(ModelEncoder):
     model = Salesperson
     properties = [
+        "id",
         "first_name",
         "last_name",
         "employee_id",
@@ -26,6 +27,7 @@ class SalespersonEncoder(ModelEncoder):
 class CustomerEncoder(ModelEncoder):
     model = Customer
     properties = [
+        "id",
         "first_name",
         "last_name",
         "address",
@@ -36,6 +38,7 @@ class CustomerEncoder(ModelEncoder):
 class SaleEncoder(ModelEncoder):
     model = Sale
     properties = [
+        "id",
         "automobile",
         "salesperson",
         "customer",
@@ -92,7 +95,7 @@ def api_show_salesperson(request, id):
             )
         except Salesperson.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": "Salesperson object does not exist"},
                 status=404
             )
 
@@ -150,7 +153,7 @@ def api_show_customer(request, id):
             )
         except Customer.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": "Customer object does not exist"},
                 status=404
             )
 
@@ -243,6 +246,48 @@ def api_show_sale(request, id):
                 safe=False,
             )
         except Sale.DoesNotExist:
+            return JsonResponse(
+                {"message": "Sale object does not exist"},
+                status=404
+            )
+
+@require_http_methods(["GET"])
+def api_autoVO(request):
+    if request.method == "GET":
+        try:
+            autoVO = AutomobileVO.objects.all()
+            return JsonResponse(
+                {"autos": autoVO},
+                encoder=AutomobileVOEncoder,
+                safe=False,
+            )
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Automobile model does not exist"},
+                status=404
+            )
+
+    else:
+        try:
+            count, _ = Sale.objects.filter(id=id).delete()
+            return JsonResponse({"deleted": count > 0})
+        except Sale.DoesNotExist:
+            return JsonResponse(
+                {"message": "Does not exist"},
+                status=404
+            )
+
+@require_http_methods(["GET"])
+def api_show_automobile_vo(request):
+    if request.method == "GET":
+        try:
+            auto_vo = AutomobileVO.objects.all()
+            return JsonResponse(
+                {"autos": auto_vo},
+                encoder=AutomobileVOEncoder,
+                safe=False,
+            )
+        except AutomobileVO.DoesNotExist:
             return JsonResponse(
                 {"message": "Does not exist"},
                 status=404

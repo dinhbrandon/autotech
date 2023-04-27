@@ -117,6 +117,7 @@ export default function NewAutomobileForm() {
                     return (
                       <option key={model.id} value={model.id}>
                         {model.name}
+                        {model.name}
                       </option>
                     );
                   })}

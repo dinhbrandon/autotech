@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+# Create your models here.
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     import_href = models.CharField(max_length=100, unique=True, null=True)
@@ -26,17 +27,20 @@ class Customer(models.Model):
 class Sale(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
-        on_delete=models.PROTECT,
         related_name="sale",
+        on_delete=models.PROTECT,
     )
+
     salesperson = models.ForeignKey(
         Salesperson,
-        on_delete=models.PROTECT,
         related_name="sale",
+        on_delete=models.PROTECT,
     )
+
     customer = models.ForeignKey(
         Customer,
-        on_delete=models.PROTECT,
         related_name="sale",
+        on_delete=models.PROTECT,
     )
     price = models.IntegerField()
+
