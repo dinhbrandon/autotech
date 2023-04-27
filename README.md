@@ -46,9 +46,9 @@ Depending on which version of the application you would like to run, switch to e
 - **CREATE vehicle model** http://localhost:3000/models/create/
     - Allows user to create a new instance of a vehicle model
     - Needed properties: Model name, Picture url, Manufacturer
--**LIST automobiles** http://localhost:3000/automobiles/
+- **LIST automobiles** http://localhost:3000/automobiles/
     - Displays list of all automobiles present inside the database
--**CREATE automobile** http://localhost:3000/automobiles/create
+- **CREATE automobile** http://localhost:3000/automobiles/create
     - Allows user to create a new instance of an automobile
     - Needed properties: Color, Year, VIN, Model name
 
@@ -63,9 +63,9 @@ Depending on which version of the application you would like to run, switch to e
 - **CREATE an appointment** http://localhost:3000/appointments/create
     - Allows user to add a new service appointment
     - Needed properties: Automobile VIN, Customer, Date, Time, Technician, Reason
--**LIST service appointments** http://localhost:3000/appointments
+- **LIST service appointments** http://localhost:3000/appointments
     - Displays list of all service appointments in the database
--**LIST service appointment history** http://localhost:3000/appointments/history
+- **LIST service appointment history** http://localhost:3000/appointments/history
     - Displays list of all finished or canceled service appointments
 
 #### Sales API
