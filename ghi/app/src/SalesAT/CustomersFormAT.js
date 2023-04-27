@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CustomersForm() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [address, setAddress] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const navigate = useNavigate();
 
     const handleUpdate = (e, stateFunction) => {
         const value = e.target.value;
@@ -36,6 +38,7 @@ export default function CustomersForm() {
             setLastName("");
             setAddress("");
             setPhoneNumber("");
+            navigate("/customers")
         }
     }
 

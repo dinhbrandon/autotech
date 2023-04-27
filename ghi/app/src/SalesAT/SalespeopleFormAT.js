@@ -1,9 +1,11 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SalespeopleForm() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [employeeId, setEmployeeId] = useState("");
+    const navigate = useNavigate();
 
     const handleUpdate = (e, stateFunction) => {
         const value = e.target.value;
@@ -33,6 +35,7 @@ export default function SalespeopleForm() {
             setFirstName("");
             setLastName("");
             setEmployeeId("");
+            navigate("/salespeople")
         }
     }
 

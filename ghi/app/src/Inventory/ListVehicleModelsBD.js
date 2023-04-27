@@ -12,7 +12,6 @@ function ListVehicleModels(){
             if (response.ok) {
                 const data = await response.json();
                 setModels(data.models);
-                console.log(data);
             }
         } catch (e) {
             console.error(e);
@@ -27,7 +26,7 @@ function ListVehicleModels(){
         <div>
             <h1>Models</h1>
             <div className='table-responsive'>
-                
+
             </div>
             <table className='table table-striped' >
                 <thead>

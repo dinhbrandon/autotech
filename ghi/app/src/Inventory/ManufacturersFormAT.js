@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ManufacturersForm() {
     const [manufacturer, setManufacturer] = useState("");
+    const navigate = useNavigate();
 
     const handleUpdate = (e, stateFunction) => {
         const value = e.target.value;
@@ -27,6 +29,7 @@ export default function ManufacturersForm() {
 
         if (response.ok) {
             setManufacturer("");
+            navigate("/manufacturers/")
         }
     }
 

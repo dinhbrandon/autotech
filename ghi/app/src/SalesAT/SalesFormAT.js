@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SalesForm() {
     const [autos, setAutos] = useState([]);
@@ -8,6 +9,7 @@ export default function SalesForm() {
     const [salesperson, setSalesperson] = useState("");
     const [customer, setCustomer] = useState("");
     const [price, setPrice] = useState("");
+    const navigate = useNavigate();
 
     const handleUpdate = (e, stateFunction) => {
         const value = e.target.value;
@@ -39,6 +41,7 @@ export default function SalesForm() {
             setSalesperson("");
             setCustomer("");
             setPrice("");
+            navigate("/sales")
             fetchAutoData();
         }
     }

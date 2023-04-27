@@ -10,9 +10,9 @@ function VehicleModelForm(){
             manufacturer_id: '',
         }
     );
-    
+
     //handle data from fetch to manufacturer_id
-    const [manufacturer_id, setManufacturer] = useState([]); 
+    const [manufacturer_id, setManufacturer] = useState([]);
 
     const fetchManufacturer = async () => {
         const url = "http://localhost:8100/api/manufacturers/";
@@ -69,7 +69,7 @@ function VehicleModelForm(){
           <div className="shadow p-4 mt-4">
             <h1>Create a vehicle model</h1>
             <form onSubmit={handleSubmit} id="create-vehicle-form">
-  
+
               <div className="form-floating mb-3">
                 <input value={formData.name} onChange={handleFormChange} placeholder="Model name" required type="text" name="name" id="name" className="form-control" />
                 <label htmlFor="name">Model name...</label>
