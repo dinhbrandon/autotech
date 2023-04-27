@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NewAutomobileForm() {
   const [models, setModels] = useState([]);
@@ -6,6 +7,8 @@ export default function NewAutomobileForm() {
   const [year, setYear] = useState("");
   const [vin, setVin] = useState("");
   const [model, setModel] = useState("");
+
+  const navigate = useNavigate();
 
   const handleUpdate = (event, stateFunction) => {
     const value = event.target.value;
@@ -33,11 +36,11 @@ export default function NewAutomobileForm() {
     const response = await fetch(autoUrl, fetchConfig);
     if (response.ok) {
       const newAuto = await response.json();
-      console.log(newAuto);
       setColor("");
       setYear("");
       setVin("");
       setModel("");
+      navigate("/automobiles/");
     }
   };
 

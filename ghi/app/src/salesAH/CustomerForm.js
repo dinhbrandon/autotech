@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CustomerForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  // Navigation reroute
+  const navigate = useNavigate();
 
   const handleUpdate = (event, stateFunction) => {
     const value = event.target.value;
@@ -32,11 +36,11 @@ export default function CustomerForm() {
     const response = await fetch(customerUrl, fetchConfig);
     if (response.ok) {
       const newCustomer = await response.json();
-      console.log(newCustomer);
       setFirstName("");
       setLastName("");
       setAddress("");
       setPhoneNumber("");
+      navigate("/customers/");
     }
   };
 

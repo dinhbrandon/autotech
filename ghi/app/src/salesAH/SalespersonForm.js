@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SalespersonForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
+
+  // Navigation reroute
+  const navigate = useNavigate();
 
   const handleUpdate = (event, stateFunction) => {
     const value = event.target.value;
@@ -30,10 +34,10 @@ export default function SalespersonForm() {
     const response = await fetch(salespeopleUrl, fetchConfig);
     if (response.ok) {
       const newSalesperson = await response.json();
-      console.log(newSalesperson);
       setFirstName("");
       setLastName("");
       setEmployeeId("");
+      navigate("/salespeople/");
     }
   };
 

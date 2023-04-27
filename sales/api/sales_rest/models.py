@@ -9,7 +9,7 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    employee_id = models.IntegerField()
+    employee_id = models.CharField(max_length=100)
 
     def get_api_url(self):
         return reverse("api_salesperson", kwargs={"pk": self.pk})

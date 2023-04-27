@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SaleForm() {
   // Dropdown array information
@@ -11,6 +12,9 @@ export default function SaleForm() {
   const [salesperson, setSalesperson] = useState("");
   const [customer, setCustomer] = useState("");
   const [price, setPrice] = useState("");
+
+  // Navigation reroute
+  const navigate = useNavigate();
 
   const handleUpdate = (event, stateFunction) => {
     const value = event.target.value;
@@ -38,11 +42,11 @@ export default function SaleForm() {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       const newSale = await response.json();
-      console.log(newSale);
       setVin("");
       setSalesperson("");
       setCustomer("");
       setPrice("");
+      navigate("/sales/");
     }
     // fetches the VIN data again so that you don't have to reload
     // the page to not show sold VINs
