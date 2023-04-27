@@ -1,7 +1,9 @@
 import React, {useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function VehicleModelForm(){
+  const navigate = useNavigate()
 
     const [formData, setFormData] = useState(
         {
@@ -42,6 +44,7 @@ function VehicleModelForm(){
 
     //handle submission of form (create vehicle model)
     const handleSubmit = async (event) => {
+      navigate("/models")
         event.preventDefault();
         const submitUrl = "http://localhost:8100/api/models/"
 
@@ -69,15 +72,15 @@ function VehicleModelForm(){
           <div className="shadow p-4 mt-4">
             <h1>Create a vehicle model</h1>
             <form onSubmit={handleSubmit} id="create-vehicle-form">
-
-              <div className="form-floating mb-3">
-                <input value={formData.name} onChange={handleFormChange} placeholder="Model name" required type="text" name="name" id="name" className="form-control" />
-                <label htmlFor="name">Model name...</label>
+  
+              <div>
+                <input value={formData.name} onChange={handleFormChange} placeholder="Model name..." required type="text" name="name" id="name" className="form-control" />
+                <label htmlFor="name"></label>
               </div>
 
-              <div className="form-floating mb-3">
-                <input value={formData.picture_url} onChange={handleFormChange} placeholder="Picture URL" required type="text" name="picture_url" id="picture_url" className="form-control" />
-                <label htmlFor="picture_url">Picture Url</label>
+              <div>
+                <input value={formData.picture_url} onChange={handleFormChange} placeholder="Picture URL..." required type="text" name="picture_url" id="picture_url" className="form-control" />
+                <label htmlFor="picture_url"></label>
               </div>
 
               <div className="mb-3">
