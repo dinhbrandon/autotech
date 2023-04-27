@@ -44,7 +44,6 @@ function VehicleModelForm(){
 
     //handle submission of form (create vehicle model)
     const handleSubmit = async (event) => {
-      navigate("/models")
         event.preventDefault();
         const submitUrl = "http://localhost:8100/api/models/"
 
@@ -63,6 +62,7 @@ function VehicleModelForm(){
                 picture_url: '',
                 manufacturer_id: '',
             });
+            navigate("/models")
         }
     };
 
@@ -72,7 +72,7 @@ function VehicleModelForm(){
           <div className="shadow p-4 mt-4">
             <h1>Create a vehicle model</h1>
             <form onSubmit={handleSubmit} id="create-vehicle-form">
-  
+
               <div>
                 <input value={formData.name} onChange={handleFormChange} placeholder="Model name..." required type="text" name="name" id="name" className="form-control" />
                 <label htmlFor="name"></label>
