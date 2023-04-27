@@ -26,7 +26,7 @@ export default function ManufacturersForm() {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const newManufacturer = await response.json();
-            console.log(newManufacturer);
+
 
             setManufacturer("");
         }

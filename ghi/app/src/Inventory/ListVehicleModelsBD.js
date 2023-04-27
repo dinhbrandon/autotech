@@ -12,7 +12,7 @@ function ListVehicleModels(){
             if (response.ok) {
                 const data = await response.json();
                 setModels(data.models);
-                console.log(data);
+
             }
         } catch (e) {
             console.error(e);

@@ -33,7 +33,7 @@ export default function NewAutomobileForm() {
     const response = await fetch(autoUrl, fetchConfig);
     if (response.ok) {
       const newAuto = await response.json();
-      console.log(newAuto);
+
       setColor("");
       setYear("");
       setVin("");
@@ -114,7 +114,7 @@ export default function NewAutomobileForm() {
                   {models?.map((model) => {
                     return (
                       <option key={model.id} value={model.id}>
-                        {model.manufacturer.name}
+                        {model.name}
                       </option>
                     );
                   })}

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function TechnicianForm(){
+    const navigate = useNavigate()
     const [formData, setFormData] = useState(
         {
             first_name: '',
@@ -20,6 +22,7 @@ function TechnicianForm(){
     }
 
     const handleSubmit = async (event) => {
+        navigate("/technicians")
         event.preventDefault();
         const submitUrl = "http://localhost:8080/api/technicians/"
 

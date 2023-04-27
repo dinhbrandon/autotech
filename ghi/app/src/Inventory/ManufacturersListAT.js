@@ -11,7 +11,6 @@ export default function ManufacturersList() {
         if (response.ok) {
             const data = await response.json();
             setManufacturers(data.manufacturers);
-            console.log(data.manufacturers);
         }
     }
 

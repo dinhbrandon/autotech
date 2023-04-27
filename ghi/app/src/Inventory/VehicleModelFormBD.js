@@ -1,7 +1,9 @@
 import React, {useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function VehicleModelForm(){
+  const navigate = useNavigate()
 
     const [formData, setFormData] = useState(
         {
@@ -42,6 +44,7 @@ function VehicleModelForm(){
 
     //handle submission of form (create vehicle model)
     const handleSubmit = async (event) => {
+      navigate("/models")
         event.preventDefault();
         const submitUrl = "http://localhost:8100/api/models/"
 

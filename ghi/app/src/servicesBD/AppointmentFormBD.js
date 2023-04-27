@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AppointmentForm(){
-
+    const navigate = useNavigate()
     const [formData, setFormData] = useState(
         {
             vin: '',
@@ -63,6 +64,7 @@ function AppointmentForm(){
         const response = await fetch(submitUrl, fetchConfig);
 
         if (response.ok){
+            navigate('/appointments');
             setFormData({
                 vin: '',
                 customer: '',

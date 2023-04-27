@@ -45,20 +45,27 @@ class AppointmentEncoder(ModelEncoder):
 def list_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
-        print()
+
 
         return JsonResponse(
             {"technicians": technicians},
             encoder=TechnicianEncoder,
         )
     else:
-        content = json.loads(request.body)
-        technician = Technician.objects.create(**content)
-        return JsonResponse(
-            technician,
-            encoder=TechnicianEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            technician = Technician.objects.create(**content)
+            return JsonResponse(
+                technician,
+                encoder=TechnicianEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create employee; incorrect or missing information."}
+            )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["GET", "POST"])
@@ -72,26 +79,33 @@ def list_appointments(request):
         )
     else:
         content = json.loads(request.body)
-
         try:
-            technician_id = content["technician"]
-            technician = Technician.objects.get(id=technician_id)
-            content["technician"] = technician
-        except Technician.DoesNotExist:
+            try:
+                technician_id = content["technician"]
+                technician = Technician.objects.get(id=technician_id)
+                content["technician"] = technician
+            except Technician.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Does not match any technicians"},
+                    status=400,
+                )
+            #  sets the is_vip field to true or false depending on vin existing in inventory
+            vin = content["vin"]
+            if AutomobileVO.objects.filter(vin=vin).count() == 1:
+                content["is_vip"] = True
+            appointment = Appointment.objects.create(**content)
             return JsonResponse(
-                {"message": "Does not match any technicians"},
-                status=400,
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
             )
-        #  sets the is_vip field to true or false depending on vin existing in inventory
-        vin = content["vin"]
-        if AutomobileVO.objects.filter(vin=vin).exists():
-            content["is_vip"] = True
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create appointment; incorrect or missing information."}
+            )
+            response.status_code = 400
+            return response
+
 
 
 @require_http_methods(["PUT"])

@@ -3,8 +3,7 @@ import React, {useEffect, useState } from 'react';
 function AppointmentHistory(){
     const [appointments, setAppointments] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    //we would use the below for filtering onChange; would require useState
-    // const [filteredAppointments, setFilteredAppointments] = useState([]);
+    const [filteredAppointments, setFilteredAppointments] = useState([]);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/appointments/"
@@ -14,6 +13,7 @@ function AppointmentHistory(){
             if(response.ok){
                 const data = await response.json();
                 setAppointments(data.appointments);
+                setFilteredAppointments(data.appointments)
 
             }
         } catch (e) {
@@ -29,16 +29,13 @@ function AppointmentHistory(){
     // filter appointments upon pressing submit
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //empty search returns full appointment list, in case user looks up wrong VIN
-        if (searchInput === ''){
-            await fetchData();
-        } else {
-            const results = appointments.filter((appointment) => {
-                return appointment.vin.includes(searchInput);
+
+             const results = appointments.filter((appointment) => {
+                return appointment.vin.includes(searchInput);               
+
             });
-            //calls the function setAppointments which populates the page, only with filtered result
-            setAppointments(results)
-        }
+            setFilteredAppointments(results);
+        
     };
     // this would allow us to filter in real time regardless of pressing submit - must be onChange=
     const handleSearch = (e) => {
@@ -76,7 +73,7 @@ function AppointmentHistory(){
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment) => {
+                    {filteredAppointments.map((appointment) => {
                         const dateTime = new Date(appointment.date_time);
                         const date = dateTime.toLocaleDateString()
                         const time = dateTime.toLocaleTimeString()
