@@ -164,6 +164,11 @@ def api_sales(request):
 
             automobile_href = content["automobile"]
             automobile = AutomobileVO.objects.get(import_href=automobile_href)
+            if automobile.sold == True:
+                return JsonResponse(
+                    {"message": "Could not create Sale instance"},
+                    status=400
+                )
             automobile.sold = True
             automobile.save()
             content["automobile"] = automobile
