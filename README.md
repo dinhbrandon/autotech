@@ -1,10 +1,10 @@
 # CarCar
 
-Team:
+Contributors:
 
-* Person 1 - Brandon Dinh (Service microservice)
-* Person 2 - Aaron Tran (Sales microservice)
-* Person 3 - Adrianna Helfrich (Sales microservice)
+* Brandon Dinh (Service microservice)
+* Aaron Tran (Sales microservice)
+* Adrianna Helfrich (Sales microservice)
 
 ## Installation
 
