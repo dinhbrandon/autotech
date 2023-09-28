@@ -11,11 +11,11 @@ Contributors:
 **Cloning down the Repository:**
 1. Open your command line and navigate to a directory where you would like this project to be cloned to
 2. To clone via HTTPS run: `git clone https://github.com/dinhbrandon/autotech.git`
-3. Change directory into the newly cloned project directory `cd project-beta`
+3. Change directory into the newly cloned project directory
 
 **Setting up Docker:** \
 In your command line run the following snippets of code:
-1. Create the Docker Volume required for Project Beta:
+1. Create the Docker Volume required for AutoTech:
 `docker volume create beta-data`
 2. Build docker images:
 `docker-compose build`
@@ -24,10 +24,6 @@ In your command line run the following snippets of code:
 
 Now you should have a running application on **http://localhost:3000**! \
 Refer to the documentation below for a breakdown of the urls and features associated with the application.
-
-Depending on which version of the application you would like to run, switch to either of these branches:
-- `git checkout main` (Brandon & Adrianna)
-- `git checkout main2` (Brandon & Aaron)
 
 ## Design
 
