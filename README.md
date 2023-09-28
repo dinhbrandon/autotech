@@ -10,7 +10,7 @@ Contributors:
 
 **Cloning down the Repository:**
 1. Open your command line and navigate to a directory where you would like this project to be cloned to
-2. To clone via HTTPS run: `git clone https://gitlab.com/dinhbrandon/project-beta.git`
+2. To clone via HTTPS run: `git clone https://github.com/dinhbrandon/autotech.git`
 3. Change directory into the newly cloned project directory `cd project-beta`
 
 **Setting up Docker:** \
